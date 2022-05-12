@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-import federation from "@originjs/vite-plugin-federation";
+import federation from '@originjs/vite-plugin-federation'
 export default defineConfig({
   plugins: [
     react(),
@@ -10,25 +10,25 @@ export default defineConfig({
       exposes: {
         './App': './src/App.tsx',
       },
-      remotes:{},
-      shared: ['react','react-dom']
-    })
+      shared: ['react', 'react-dom'],
+    }),
   ],
   server: {
     host: true,
     port: 3002,
   },
-  preview:{
+  preview: {
     host: true,
     port: 3002,
   },
-  // build: {
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         react: ['react', 'react-dom'],
-  //       },
-  //     },
-  //   },
-  // },
+  build: {
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        // manualChunks: {
+        //   react: ['react', 'react-dom'],
+        // },
+      },
+    },
+  },
 })

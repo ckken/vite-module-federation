@@ -12,7 +12,10 @@ export default defineConfig({
         './App': './src/App.tsx',
       },
       remotes: {
-        host: 'http://172.29.181.111:3001/emp.js',
+        host: {
+          external: 'http://localhost:3002/assets/emp.js',
+          format: 'esm',
+        },
       },
       shared: ['react', 'react-dom'],
     }),
@@ -32,6 +35,7 @@ export default defineConfig({
     port: 3001,
   },
   build: {
+    target: 'esnext',
     rollupOptions: {
       external: externals,
       // output: {
