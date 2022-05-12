@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"@efox/eslint-config-react": "^2.3.0"
+	}
+}
