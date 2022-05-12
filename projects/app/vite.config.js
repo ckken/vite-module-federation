@@ -1,6 +1,7 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from '@originjs/vite-plugin-federation'
+const externals = ['host/App']
 export default defineConfig({
   plugins: [
     react(),
@@ -16,6 +17,12 @@ export default defineConfig({
       shared: ['react', 'react-dom'],
     }),
   ],
+  optimizeDeps: {
+    exclude: externals,
+    esbuildOptions: {
+      external: externals,
+    },
+  },
   server: {
     host: true,
     port: 3001,
@@ -24,14 +31,15 @@ export default defineConfig({
     host: true,
     port: 3001,
   },
-  // build: {
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         react: ['react'],
-  //         reactDom:['react-dom']
-  //       },
-  //     },
-  //   },
-  // },
+  build: {
+    rollupOptions: {
+      external: externals,
+      // output: {
+      //   manualChunks: {
+      //     react: ['react'],
+      //     reactDom:['react-dom']
+      //   },
+      // },
+    },
+  },
 })

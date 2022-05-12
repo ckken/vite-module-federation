@@ -1,4 +1,6 @@
-import Host from 'host/App'
+// import Host from 'host/App'
+import {Suspense, lazy} from 'react'
+const Host = lazy(() => import('host/App'))
 const App = () => (
   <>
     <Host />
